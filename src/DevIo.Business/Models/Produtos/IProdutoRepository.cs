@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevIo.Business.Models.Produtos
 {
-    interface IProdutoRepository : IRepository<Produto>
+    public interface IProdutoRepository : IRepository<Produto>
     {
         Task<IEnumerable<Produto>> ObterProdutosPorFornecedor(Guid fornecedorId);
         Task<IEnumerable<Produto>> ObterProdutosFornecedores(Guid fornecedorId);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevIo.Business.Core.Models
 {
-    abstract class Entity
+    public abstract class Entity
     {
         protected Entity()
         {

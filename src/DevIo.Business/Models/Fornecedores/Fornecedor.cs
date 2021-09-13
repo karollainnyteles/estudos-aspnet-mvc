@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DevIo.Business.Models.Fornecedores
 {
-    class Fornecedor : Entity
+    public class Fornecedor : Entity
     {
         public string Nome { get; set; }
         public string Documento { get; set; }
