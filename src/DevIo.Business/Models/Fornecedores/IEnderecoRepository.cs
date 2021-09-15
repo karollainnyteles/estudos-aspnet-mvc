@@ -9,6 +9,6 @@ namespace DevIo.Business.Models.Fornecedores
 {
     public interface IEnderecoRepository : IRepository<Endereco>
     {
-        Task<Endereco> ObterEnderecoPorForncedor(Guid fornecedorId);
+        Task<Endereco> ObterEnderecoPorFornecedor(Guid fornecedorId);
     }
 }
