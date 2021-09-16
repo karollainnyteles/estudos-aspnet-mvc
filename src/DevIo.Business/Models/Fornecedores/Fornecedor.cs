@@ -1,4 +1,5 @@
 ﻿using DevIo.Business.Core.Models;
+using DevIo.Business.Models.Fornecedores.Validations;
 using DevIo.Business.Models.Produtos;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,14 @@ namespace DevIo.Business.Models.Fornecedores
         /* Relação com EF*/
 
         public ICollection<Produto> Produtos { get; set; }
+
+        public bool Validacao()
+        {
+            var validacao = new FornecedorValidation();
+            var resultado = validacao.Validate(this);
+
+            return resultado.IsValid;
+        }
 
     }
 }
