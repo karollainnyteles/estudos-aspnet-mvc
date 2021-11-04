@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevIo.Business.Core.Models
 {
+    // uma entidade generica, entidade base para outras herdarem desta
     public abstract class Entity
     {
         protected Entity()

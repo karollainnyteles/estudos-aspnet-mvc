@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevIo.Business.Core.Validations.Documentos
+namespace DevIo.Business.Models.Fornecedores.Validations
 {
     public class EnderecoValidation : AbstractValidator<Endereco>
     {

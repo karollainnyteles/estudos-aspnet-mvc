@@ -24,4 +24,5 @@ namespace DevIo.Infra.Data.Repository
                 .Include(f => f.Produtos)
                 .FirstOrDefaultAsync(f => f.Id == id);// faz um join de fornecedores, produtos e endereco
         }
+    }
 }

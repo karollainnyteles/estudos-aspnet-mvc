@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace DevIo.Business.Core.Data
 {
+    // repositorio generico
     public interface IRepository<TEntity> : IDisposable where TEntity : Entity
     {
         Task Adicionar(TEntity entity);
