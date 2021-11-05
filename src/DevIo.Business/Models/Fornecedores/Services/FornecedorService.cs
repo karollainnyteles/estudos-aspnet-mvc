@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DevIo.Business.Core.Services;
+using DevIo.Business.Core.Notificacoes;
 
 namespace DevIo.Business.Models.Fornecedores.Services
 {
@@ -14,7 +15,7 @@ namespace DevIo.Business.Models.Fornecedores.Services
         private readonly IEnderecoRepository _enderecoRepository;
 
         // injecao de dependencia
-        public FornecedorService(IFornecedorRepository fornecedorRepository, IEnderecoRepository enderecoRepository)
+        public FornecedorService(IFornecedorRepository fornecedorRepository, IEnderecoRepository enderecoRepository, INotificador notificador) : base(notificador)
         {
             _fornecedorRepository = fornecedorRepository;
             _enderecoRepository = enderecoRepository;
@@ -39,7 +40,10 @@ namespace DevIo.Business.Models.Fornecedores.Services
         {
             var fornecedor = await _fornecedorRepository.ObterFornecedorProdutosEndereco(id);
 
-            if (fornecedor.Produtos.Any()) return;// se o fornecedor tiver produtos não será removido
+            if (fornecedor.Produtos.Any()) {
+                Notificar("O Fornecedor possui produtos cadastrados!");
+                return;
+            }// se o fornecedor tiver produtos não será removido
             if(fornecedor.Endereco != null)
             {
                 await _enderecoRepository.Remover(fornecedor.Endereco.Id);
@@ -58,7 +62,11 @@ namespace DevIo.Business.Models.Fornecedores.Services
         private async Task<bool> FornecedorExistente(Fornecedor fornecedor)
         {
             var fornecedorAtual = await _fornecedorRepository.Buscar(f => f.Documento == fornecedor.Documento && f.Id == fornecedor.Id);
-            return fornecedorAtual.Any();
+
+            if (!fornecedorAtual.Any()) return false;
+            Notificar("Já existe um fornecedor com este documento informado!");
+
+            return true;
         }
 
         public void Dispose()

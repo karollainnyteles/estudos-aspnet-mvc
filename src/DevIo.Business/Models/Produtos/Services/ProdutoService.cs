@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DevIo.Business.Core.Notificacoes;
 using DevIo.Business.Core.Services;
 using DevIo.Business.Models.Produtos.Validations;
 
@@ -12,7 +13,7 @@ namespace DevIo.Business.Models.Produtos.Services
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoService(IProdutoRepository produtoRepository)
+        public ProdutoService(IProdutoRepository produtoRepository, INotificador notificador) : base(notificador)
         {
             _produtoRepository = produtoRepository;
         }
