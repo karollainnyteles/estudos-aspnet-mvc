@@ -12,6 +12,7 @@ namespace DevIo.Business.Models.Fornecedores.Services
     {
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IEnderecoRepository _enderecoRepository;
+
         // injecao de dependencia
         public FornecedorService(IFornecedorRepository fornecedorRepository, IEnderecoRepository enderecoRepository)
         {

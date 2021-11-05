@@ -13,7 +13,7 @@ namespace DevIo.Business.Models.Fornecedores.Validations
         public FornecedorValidation()
         {
             RuleFor(f => f.Nome).NotEmpty().WithMessage("O campo {PropertyName} precisa ser fornecido")
-                .Length(2,200).WithMessage("O campo {PropertyName} precisa ter entre {MinLenght} e {MaxLenght} caracteres");
+                .Length(2,200).WithMessage("O campo {PropertyName} precisa ter entre {MinLength} e {MaxLength} caracteres");
 
             When(f => f.TipoFornecedor == TipoFornecedor.PessoaFisica, () => {
 
