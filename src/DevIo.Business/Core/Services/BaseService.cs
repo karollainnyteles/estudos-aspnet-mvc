@@ -10,6 +10,7 @@ using FluentValidation.Results;
 
 namespace DevIo.Business.Core.Services
 {
+    // classe que executa a validacao e notifica os erros
     public abstract class BaseService
     {
         private readonly INotificador _notificador;
@@ -19,19 +20,7 @@ namespace DevIo.Business.Core.Services
             _notificador = notificador;
         }
 
-        protected void Notificar(ValidationResult validationResult)
-        {
-            foreach(var error in validationResult.Errors)
-            {
-                Notificar(error.ErrorMessage);
-            }
-        }
-
-        protected void Notificar( string mensagem)
-        {
-            _notificador.Handle(new Notificacao(mensagem));
-                
-        }
+       
         protected bool ExecutarValidacao<TV, TE>(TV validacao, TE entidade) where TV : AbstractValidator<TE> where TE : Entity
         {
             var validator = validacao.Validate(entidade);
@@ -40,6 +29,20 @@ namespace DevIo.Business.Core.Services
             Notificar(validator);
 
             return false;
+        }
+
+        protected void Notificar(ValidationResult validationResult)
+        {
+            foreach (var error in validationResult.Errors)
+            {
+                Notificar(error.ErrorMessage);
+            }
+        }
+
+        protected void Notificar(string mensagem)
+        {
+            _notificador.Handle(new Notificacao(mensagem));
+
         }
     }
 }
